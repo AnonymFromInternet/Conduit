@@ -1,6 +1,6 @@
 import { AuthenticationStateInterface } from "../../Types/AuthenticationState.interface";
 import { ActionTypes } from "../ActionTypes/ActionTypes";
-import { AuthenticationActionInterface } from "../../Types/AuthenticationAction.interface";
+import { ActionInterface } from "../../Types/Action.interface";
 
 const initialState: AuthenticationStateInterface = {
   isLoggedIn: null,
@@ -10,7 +10,7 @@ const initialState: AuthenticationStateInterface = {
 };
 const authenticationReducer = (
   state: AuthenticationStateInterface = initialState,
-  action: AuthenticationActionInterface
+  action: ActionInterface
 ) => {
   switch (action.type) {
     case ActionTypes.LOGIN:
@@ -34,7 +34,7 @@ const authenticationReducer = (
         errors: "Error by login action",
       };
     default:
-      throw new Error("Cannot recognize action type");
+      return state;
   }
 };
 export default authenticationReducer;

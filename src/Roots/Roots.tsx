@@ -4,7 +4,7 @@ import GlobalFeedComponent from "../Modules/GlobalFeed/Components/GlobalFeed.com
 import AuthenticationComponent from "../Modules/Authentication/Components/Authentication.component";
 import ArticleComponent from "../Modules/Article/Components/Article.component";
 
-export default () => {
+const Roots = () => {
   return (
     <Routes>
       <Route path="/" element={<GlobalFeedComponent />} />
@@ -14,3 +14,4 @@ export default () => {
     </Routes>
   );
 };
+export default Roots;
