@@ -1,8 +1,8 @@
-import { UserStateInterface } from "../Types/UserState.interface";
+import { UserStateInterface } from "../../Types/UserState.interface";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { UserInterface } from "../../../Shared/Types/User.interface";
-import { RootState } from "../../../Shared/GlobalStore/RootState";
+import { UserInterface } from "../../../../Shared/Types/User.interface";
+import { RootState } from "../../../../Shared/GlobalStore/RootState";
 
 const initialState: UserStateInterface = {
   isLoading: false,
@@ -14,7 +14,7 @@ export const getUserSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    getUser: (state) => {
+    getUserAction: (state) => {
       state.isLoading = true;
     },
     getUserSuccessAction: (state, action: PayloadAction<UserInterface>) => {
@@ -27,7 +27,7 @@ export const getUserSlice = createSlice({
 });
 
 // Exporting Actions:
-export const { getUser, getUserSuccessAction, getUserFailureAction } =
+export const { getUserAction, getUserSuccessAction, getUserFailureAction } =
   getUserSlice.actions;
 
 // Exporting Selectors:
