@@ -3,7 +3,10 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../../../Shared/GlobalStore/Hooks";
-import { getUserSuccessAction } from "../Store/Slices/Authentication.slice";
+import {
+  getUserSuccessAction,
+  getUserAction,
+} from "../Store/Slices/Authentication.slice";
 
 const AuthenticationComponent = () => {
   const isLoadingState = useAppSelector((state) => state.getUser.isLoading);
@@ -27,6 +30,9 @@ const AuthenticationComponent = () => {
             }
           >
             Login
+          </button>
+          <button onClick={() => dispatch(getUserAction())}>
+            getUserWithout payload
           </button>
         </Col>
       </Row>
