@@ -1,7 +1,7 @@
 import { CurrentUserInterface } from "../../../Shared/Types/CurrentUser.interface";
 
-export interface UserStateInterface {
-  isLoading: boolean;
+export interface AuthStateInterface {
+  isSubmitting: boolean;
   user: CurrentUserInterface | null;
   error: string | null;
 }

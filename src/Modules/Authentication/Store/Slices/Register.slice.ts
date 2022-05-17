@@ -1,33 +1,35 @@
-import { UserStateInterface } from "../../Types/UserState.interface";
+import { AuthStateInterface } from "../../Types/AuthState.interface";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { CurrentUserInterface } from "../../../../Shared/Types/CurrentUser.interface";
 import { RootState } from "../../../../Shared/GlobalStore/RootState";
 import { RegisterRequestInterface } from "../../Types/RegisterRequest.interface";
 
-const initialState: UserStateInterface = {
-  isLoading: false,
+const initialState: AuthStateInterface = {
+  isSubmitting: false,
   user: null,
   error: null,
 };
 
 export const getUserSlice = createSlice({
-  name: "register",
+  name: "auth",
   initialState,
   reducers: {
     registerAction: (
       state,
       action: PayloadAction<RegisterRequestInterface>
     ) => {
-      state.isLoading = true;
+      state.isSubmitting = true;
     },
     registerSuccessAction: (
       state,
       action: PayloadAction<CurrentUserInterface>
     ) => {
+      state.isSubmitting = false;
       state.user = action.payload;
     },
     registerFailureAction: (state, action: PayloadAction<string>) => {
+      state.isSubmitting = false;
       state.error = action.payload;
     },
   },
@@ -38,9 +40,9 @@ export const { registerAction, registerSuccessAction, registerFailureAction } =
   getUserSlice.actions;
 
 // Exporting Selectors:
-export const isLoadingSelect = (state: RootState) => state.register.isLoading;
-export const userSelect = (state: RootState) => state.register.user;
-export const errorSelect = (state: RootState) => state.register.error;
+export const isLoadingSelect = (state: RootState) => state.auth.isSubmitting;
+export const userSelect = (state: RootState) => state.auth.user;
+export const errorSelect = (state: RootState) => state.auth.error;
 
 // Exporting Reducer
 export default getUserSlice.reducer;

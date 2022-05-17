@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import register from "../../Modules/Authentication/Store/Slices/Register.slice";
+import auth from "../../Modules/Authentication/Store/Slices/Register.slice";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./RootSaga/RootSaga";
 
@@ -10,7 +10,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
   reducer: {
-    register: register,
+    auth: auth,
   },
   middleware: [sagaMiddleware],
 });

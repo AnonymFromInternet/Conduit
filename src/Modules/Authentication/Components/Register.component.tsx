@@ -6,10 +6,13 @@ import {
   useAppSelector,
 } from "../../../Shared/GlobalStore/Hooks";
 import { registerAction } from "../Store/Slices/Register.slice";
+import { RegisterRequestInterface } from "../Types/RegisterRequest.interface";
 
 const RegisterComponent = () => {
-  const isLoadingState = useAppSelector((state) => state.register.isLoading);
+  // State
+  const isSubmitting$ = useAppSelector((state) => state.auth.isSubmitting);
   const dispatch = useAppDispatch();
+  // State
 
   // Data from inputs
   const [username, setUsername] = useState("");
@@ -18,12 +21,10 @@ const RegisterComponent = () => {
 
   function login(event: any): void {
     event.preventDefault();
-    let userData = {
-      username,
-      email,
-      password,
+    let user: RegisterRequestInterface = {
+      user: { username, email, password },
     };
-    dispatch(registerAction(userData));
+    dispatch(registerAction(user));
   }
 
   return (
@@ -65,6 +66,7 @@ const RegisterComponent = () => {
                   />
                 </fieldset>
                 <button
+                  disabled={isSubmitting$}
                   onClick={(e) => login(e)}
                   type={"submit"}
                   className="btn btn-lg btn-success pull-xs-right"
