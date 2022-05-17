@@ -8,14 +8,11 @@ import { AuthService } from "../Services/Auth.service";
 
 export const authListenerMiddleware = createListenerMiddleware();
 
-// Создание слушателей, которые реагируют на определенные экшены:
 authListenerMiddleware.startListening({
   actionCreator: registerAction,
   effect: async (action, listenerApi) => {
     // Можно отключить другие вызванные слушатели на этот же экшн
-    listenerApi.cancelActiveListeners();
-
-    // Асинхронный блок кода. Например обращение к API
+    // listenerApi.cancelActiveListeners();
     AuthService.register(action.payload)
       .then((response) => {
         listenerApi.dispatch(registerSuccessAction(response.data));

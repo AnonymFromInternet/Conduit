@@ -8,7 +8,8 @@ export const store = configureStore({
     auth: auth,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().prepend(authListenerMiddleware.middleware),
+    getDefaultMiddleware().prepend([authListenerMiddleware.middleware]),
+  // Вроде позволяет добавлять другие слушатели через следующие .prepend()
 });
 
 export type RootState = ReturnType<typeof store.getState>;
