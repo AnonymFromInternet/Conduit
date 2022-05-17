@@ -1,5 +1,5 @@
-import { getUserWatcher } from "../../../Modules/Authentication/Store/Sagas/authentication.sagas";
+import { registerWatcher } from "../../../Modules/Authentication/Sagas/authentication.sagas";
 
 export default function* rootSaga() {
-  yield getUserWatcher();
+  yield registerWatcher();
 }

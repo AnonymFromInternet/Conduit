@@ -1,7 +1,7 @@
-import { UserInterface } from "../../../Shared/Types/User.interface";
+import { CurrentUserInterface } from "../../../Shared/Types/CurrentUser.interface";
 
 export interface UserStateInterface {
   isLoading: boolean;
-  user: UserInterface | null;
+  user: CurrentUserInterface | null;
   error: string | null;
 }

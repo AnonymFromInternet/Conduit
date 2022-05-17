@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import getUserReducer from "../../Modules/Authentication/Store/Slices/Authentication.slice";
+import register from "../../Modules/Authentication/Store/Slices/Register.slice";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./RootSaga/RootSaga";
 
@@ -10,7 +10,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
   reducer: {
-    getUser: getUserReducer,
+    register: register,
   },
   middleware: [sagaMiddleware],
 });
@@ -20,6 +20,3 @@ sagaMiddleware.run(rootSaga);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
-// Внутри configureStore есть middleware. Скорее всего туда можно положить applyMiddleWare(sagaMiddleWare)
-// sagaMiddleWare.run() должен быть указан в определенном порядке
