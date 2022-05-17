@@ -4,7 +4,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CurrentUserInterface } from "../../../../Shared/Types/CurrentUser.interface";
 import { RootState } from "../../../../Shared/GlobalStore/RootState";
 import { RegisterRequestInterface } from "../../Types/RegisterRequest.interface";
-import { Simulate } from "react-dom/test-utils";
 
 const initialState: AuthStateInterface = {
   isSubmitting: false,

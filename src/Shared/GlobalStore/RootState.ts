@@ -1,22 +1,15 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import auth from "../../Modules/Authentication/Store/Slices/Register.slice";
-import createSagaMiddleware from "redux-saga";
-import rootSaga from "./RootSaga/RootSaga";
+import { configureStore } from "@reduxjs/toolkit";
 
-// Create Saga middleware and disabling thunk:
-const sagaMiddleware = createSagaMiddleware();
-//const middleware = [...getDefaultMiddleware({ thunk: false }), sagaMiddleware];
-// Create Saga middleware and disabling thunk
+import auth from "../../Modules/Authentication/Store/Slices/Register.slice";
+import { authListenerMiddleware } from "../../Modules/Authentication/Listeners/Auth.listener";
 
 export const store = configureStore({
   reducer: {
     auth: auth,
   },
-  middleware: [sagaMiddleware],
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().prepend(authListenerMiddleware.middleware),
 });
-
-// Saga Run:
-sagaMiddleware.run(rootSaga);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
