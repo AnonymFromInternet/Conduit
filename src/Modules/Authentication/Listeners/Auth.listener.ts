@@ -1,4 +1,5 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
+
 import {
   registerAction,
   registerFailureAction,
@@ -11,7 +12,7 @@ export const authListenerMiddleware = createListenerMiddleware();
 authListenerMiddleware.startListening({
   actionCreator: registerAction,
   effect: async (action, listenerApi) => {
-    // Можно отключить другие вызванные слушатели на этот же экшн
+    // It gives to disable other listeners with this type:
     // listenerApi.cancelActiveListeners();
     AuthService.register(action.payload)
       .then((response) => {

@@ -11,6 +11,7 @@ import { RegisterRequestInterface } from "../Types/RegisterRequest.interface";
 const RegisterComponent = () => {
   // State
   const isSubmitting$ = useAppSelector((state) => state.auth.isSubmitting);
+  const backendErrors$ = useAppSelector((state) => state.auth.error);
   const dispatch = useAppDispatch();
   // State
 
@@ -38,7 +39,7 @@ const RegisterComponent = () => {
                 Have an Account?
               </Link>
             </p>
-            Backend Errors are Here
+            {backendErrors$ && <p className="text-danger">{backendErrors$}</p>}
             <form>
               <fieldset>
                 <fieldset className={"form-group"}>
