@@ -3,5 +3,5 @@ import { CurrentUserInterface } from "../../../Shared/Types/CurrentUser.interfac
 export interface AuthStateInterface {
   isSubmitting: boolean;
   user: CurrentUserInterface | null;
-  error: string | null;
+  error: any;
 }

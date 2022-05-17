@@ -1,15 +1,13 @@
 import { RegisterRequestInterface } from "../Types/RegisterRequest.interface";
-import axios from "axios";
 
 import { apiUrl } from "../../../Shared/Types/Constants";
-import { AuthResponseInterface } from "../Types/AuthResponse.interface";
+import axios from "axios";
 
 export class AuthService {
-  static async get(data: RegisterRequestInterface) {
-    return axios.request<AuthResponseInterface>({
-      method: "post",
-      url: apiUrl,
-      data: data,
-    });
+  static async register(data: RegisterRequestInterface) {
+    return await axios.post(apiUrl + "/users", data);
+  }
+  static async login(data: RegisterRequestInterface) {
+    return await axios.post(apiUrl + "/login", data);
   }
 }

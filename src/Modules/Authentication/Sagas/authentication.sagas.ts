@@ -1,4 +1,4 @@
-import { takeEvery } from "redux-saga/effects";
+import { takeEvery, put, call } from "redux-saga/effects";
 
 import {
   registerAction,
@@ -17,24 +17,14 @@ export function* authWatcher() {
 }
 
 // Register workers
-export function* registerWorker(action: any) {
-  // axios
-  AuthService.get(action.payload)
-    .then((response) => {
-      registerSuccessAction(response.data.user);
-    })
-    .catch((response) => {
-      registerFailureAction(response);
-    });
-  yield;
-}
+export function* registerWorker(action: any) {}
 
 export function* registerSuccessWorker(action: any) {
-  console.log("payload is:", action.payload);
+  console.log("success action");
   yield;
 }
 export function* registerFailureWorker(action: any) {
-  console.log("payload is:", action.payload);
+  console.log("failure action");
   yield;
 }
 // Register workers
