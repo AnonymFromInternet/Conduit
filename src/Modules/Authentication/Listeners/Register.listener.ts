@@ -8,17 +8,17 @@ import {
 import { AuthService } from "../Services/Auth.service";
 import { TokenService } from "../../../Shared/Services/Token.service";
 
-export const authListenerMiddleware = createListenerMiddleware();
+export const registerListenerMiddleware = createListenerMiddleware();
 
-authListenerMiddleware.startListening({
+registerListenerMiddleware.startListening({
   actionCreator: registerAction,
   effect: async (action, listenerApi) => {
     // It gives to disable other listeners with this type:
     // listenerApi.cancelActiveListeners();
     AuthService.register(action.payload)
       .then((response) => {
-        TokenService.setToken("accessToken", response.data.token);
-        listenerApi.dispatch(registerSuccessAction(response.data));
+        TokenService.setToken("accessToken", response.data.user.token);
+        listenerApi.dispatch(registerSuccessAction(response.data.user));
         // ? Reloading page
         window.location.href = "/";
       })

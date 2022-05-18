@@ -5,6 +5,7 @@ import { CurrentUserInterface } from "../../../../Shared/Types/CurrentUser.inter
 import { RootState } from "../../../../Shared/GlobalStore/RootState";
 import { RegisterRequestInterface } from "../../Types/RegisterRequest.interface";
 import { BackendErrorsType } from "../../../../Shared/Types/BackendErrors.type";
+import { LoginRequestInterface } from "../../Types/LoginRequest.interface";
 
 const initialState: AuthStateInterface = {
   isSubmitting: false,
@@ -13,7 +14,7 @@ const initialState: AuthStateInterface = {
   error: null,
 };
 
-export const getUserSlice = createSlice({
+export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
@@ -40,12 +41,36 @@ export const getUserSlice = createSlice({
       state.error = action.payload;
       state.isLoggedIn = false;
     },
+    loginAction: (state, action: PayloadAction<LoginRequestInterface>) => {
+      state.isSubmitting = true;
+      state.error = null;
+    },
+    loginSuccessAction: (
+      state,
+      action: PayloadAction<CurrentUserInterface>
+    ) => {
+      state.isSubmitting = false;
+      state.isLoggedIn = true;
+      state.currentUser = action.payload;
+    },
+    loginFailureAction: (state, action: PayloadAction<BackendErrorsType>) => {
+      state.isSubmitting = false;
+      state.isLoggedIn = false;
+      state.currentUser = null;
+      state.error = action.payload;
+    },
   },
 });
 
 // Exporting Actions:
-export const { registerAction, registerSuccessAction, registerFailureAction } =
-  getUserSlice.actions;
+export const {
+  registerAction,
+  registerSuccessAction,
+  registerFailureAction,
+  loginAction,
+  loginSuccessAction,
+  loginFailureAction,
+} = authSlice.actions;
 
 // Exporting Selectors:
 export const isSubmittingSelect = (state: RootState) => state.auth.isSubmitting;
@@ -54,4 +79,4 @@ export const errorSelect = (state: RootState) => state.auth.error;
 export const isLoggedInSelect = (state: RootState) => state.auth.isLoggedIn;
 
 // Exporting Reducer
-export default getUserSlice.reducer;
+export default authSlice.reducer;
