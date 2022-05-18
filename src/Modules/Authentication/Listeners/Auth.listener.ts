@@ -6,6 +6,7 @@ import {
   registerSuccessAction,
 } from "../Store/Slices/Register.slice";
 import { AuthService } from "../Services/Auth.service";
+import { TokenService } from "../../../Shared/Services/Token.service";
 
 export const authListenerMiddleware = createListenerMiddleware();
 
@@ -16,7 +17,10 @@ authListenerMiddleware.startListening({
     // listenerApi.cancelActiveListeners();
     AuthService.register(action.payload)
       .then((response) => {
+        TokenService.setToken("accessToken", response.data.token);
         listenerApi.dispatch(registerSuccessAction(response.data));
+        // ? Reloading page
+        window.location.href = "/";
       })
       .catch((error) => {
         let data = error.response.data.errors;

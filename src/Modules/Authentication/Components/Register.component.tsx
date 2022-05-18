@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useState } from "react";
 
 import {
@@ -7,11 +7,13 @@ import {
 } from "../../../Shared/GlobalStore/Hooks";
 import { registerAction } from "../Store/Slices/Register.slice";
 import { RegisterRequestInterface } from "../Types/RegisterRequest.interface";
+import BackendErrorMessagesComponent from "../../../Shared/Components/BackendErrorMessages.component";
 
 const RegisterComponent = () => {
   // State
   const isSubmitting$ = useAppSelector((state) => state.auth.isSubmitting);
   const backendErrors$ = useAppSelector((state) => state.auth.error);
+  const currentUser$ = useAppSelector((state) => state.auth.currentUser);
   const dispatch = useAppDispatch();
   // State
 
@@ -39,7 +41,10 @@ const RegisterComponent = () => {
                 Have an Account?
               </Link>
             </p>
-            {backendErrors$ && <p className="text-danger">{backendErrors$}</p>}
+            {currentUser$ !== null && <Navigate to={"/"} />}
+            {backendErrors$ && (
+              <BackendErrorMessagesComponent errors={backendErrors$} />
+            )}
             <form>
               <fieldset>
                 <fieldset className={"form-group"}>
