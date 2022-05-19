@@ -14,12 +14,10 @@ loginListenerMiddleware.startListening({
   effect: async (action, listenerApi) => {
     AuthService.login(action.payload)
       .then((response) => {
-        console.log("login successful", response);
         TokenService.setToken("accessToken", response.data.user.token);
         listenerApi.dispatch(loginSuccessAction(response.data.user));
       })
       .catch((error) => {
-        console.log("login not successful");
         let data = error.response.data.errors;
         let errorsArray: string[] = [];
         Object.keys(data).forEach((element: string) => {

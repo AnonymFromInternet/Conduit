@@ -9,7 +9,7 @@ const TopBarComponent = () => {
   const isLoggedIn$ = useAppSelector((state) => state.auth.isLoggedIn);
   // Store
   return (
-    <nav className="navbar navbar-dark bg-dark">
+    <nav className="navbar navbar-dark">
       <div className="container">
         <Link to={"/"} className="navbar-brand">
           Logo

@@ -8,6 +8,7 @@ import { BackendErrorsType } from "../../../../Shared/Types/BackendErrors.type";
 import { LoginRequestInterface } from "../../Types/LoginRequest.interface";
 
 const initialState: AuthStateInterface = {
+  currentUserLoading: false,
   isSubmitting: false,
   isLoggedIn: null,
   currentUser: null,
@@ -59,6 +60,23 @@ export const authSlice = createSlice({
       state.currentUser = null;
       state.error = action.payload;
     },
+    getCurrentUserAction: (state) => {
+      state.currentUserLoading = true;
+      state.error = null;
+    },
+    getCurrentUserSuccessAction: (
+      state,
+      action: PayloadAction<CurrentUserInterface>
+    ) => {
+      state.currentUserLoading = false;
+      state.isLoggedIn = true;
+      state.currentUser = action.payload;
+    },
+    getCurrentUserFailureAction: (state) => {
+      state.currentUserLoading = false;
+      state.isLoggedIn = false;
+      state.currentUser = null;
+    },
   },
 });
 
@@ -70,6 +88,9 @@ export const {
   loginAction,
   loginSuccessAction,
   loginFailureAction,
+  getCurrentUserAction,
+  getCurrentUserSuccessAction,
+  getCurrentUserFailureAction,
 } = authSlice.actions;
 
 // Exporting Selectors:

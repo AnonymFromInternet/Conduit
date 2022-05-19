@@ -10,7 +10,7 @@ export class TokenService {
 
   static getToken(key: string): any {
     try {
-      return JSON.parse(localStorage.getItem(key) ?? "");
+      return JSON.parse(localStorage.getItem(key)!);
     } catch (e) {
       console.error("Cannot get token from localstorage: ", e);
       return null;
