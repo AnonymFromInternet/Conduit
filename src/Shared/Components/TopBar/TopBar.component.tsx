@@ -68,13 +68,15 @@ const TopBarComponent = () => {
           )}
           {!isLoggedIn$ && (
             <>
-              <NavLink
-                className="nav-link"
-                style={{ padding: "6px" }}
-                to={"/login"}
-              >
-                Sign in
-              </NavLink>
+              <div className={"nav-item form-control mr-sm-2 m-1"}>
+                <NavLink
+                  className="nav-link"
+                  style={{ padding: "6px" }}
+                  to={"/login"}
+                >
+                  Sign in
+                </NavLink>
+              </div>
 
               <div className="nav-item form-control mr-sm-2 m-1">
                 <NavLink
