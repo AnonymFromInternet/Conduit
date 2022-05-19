@@ -16,7 +16,11 @@ const TopBarComponent = () => {
         </Link>
         <form className="form form-inline">
           <div className={"nav-item form-control mr-sm-2"}>
-            <NavLink className="nav-link" style={{ padding: "6px" }} to={"/"}>
+            <NavLink
+              className="nav-link"
+              style={{ padding: "6px", color: "black" }}
+              to={"/"}
+            >
               Main Page
             </NavLink>
           </div>
@@ -25,7 +29,7 @@ const TopBarComponent = () => {
               <div className={"nav-item form-control mr-sm-2 m-1"}>
                 <NavLink
                   className="nav-link"
-                  style={{ padding: "6px" }}
+                  style={{ padding: "6px", color: "black" }}
                   to={"/articles/new"}
                 >
                   <i className="ion-compose"></i>
@@ -36,7 +40,7 @@ const TopBarComponent = () => {
               <div className="nav-item form-control mr-sm-2 m-1">
                 <NavLink
                   className="nav-link"
-                  style={{ padding: "6px" }}
+                  style={{ padding: "6px", color: "black" }}
                   to={"/settings"}
                 >
                   <i className="ion-gear-a"></i>
@@ -47,7 +51,7 @@ const TopBarComponent = () => {
               <div className="nav-item form-control mr-sm-2 m-1">
                 <NavLink
                   className="nav-link"
-                  style={{ padding: "6px" }}
+                  style={{ padding: "6px", color: "black" }}
                   to={"/settings"}
                 >
                   <i className="ion-gear-a"></i>
@@ -71,7 +75,7 @@ const TopBarComponent = () => {
               <div className={"nav-item form-control mr-sm-2 m-1"}>
                 <NavLink
                   className="nav-link"
-                  style={{ padding: "6px" }}
+                  style={{ padding: "6px", color: "black" }}
                   to={"/login"}
                 >
                   Sign in
@@ -81,7 +85,7 @@ const TopBarComponent = () => {
               <div className="nav-item form-control mr-sm-2 m-1">
                 <NavLink
                   className="nav-link"
-                  style={{ padding: "6px" }}
+                  style={{ padding: "6px", color: "black" }}
                   to={"/register"}
                 >
                   Sign Up

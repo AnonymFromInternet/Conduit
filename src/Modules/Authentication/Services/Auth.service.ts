@@ -10,8 +10,6 @@ export class AuthService {
   static async login(data: LoginRequestInterface) {
     return await customAxios.post(apiUrl + "/users/login", data);
   }
-
-  // Отправить токен на бэкенд
   static async getCurrentUser() {
     return await customAxios.get(apiUrl + "/user");
   }

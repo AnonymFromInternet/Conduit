@@ -12,7 +12,6 @@ export const getCurrentUserListener = createListenerMiddleware();
 getCurrentUserListener.startListening({
   actionCreator: getCurrentUserAction,
   effect: async (action, listenerApi) => {
-    // Брать токен через Token Service тут и назначать в заголовки
     const token = TokenService.getToken("accessToken");
     if (!token || token === "") {
       listenerApi.dispatch(getCurrentUserFailureAction());

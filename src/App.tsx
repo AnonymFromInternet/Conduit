@@ -15,7 +15,6 @@ function App() {
     <>
       <Router>
         <TopBarComponent />
-        <h1>Hello React</h1>
         <Routes></Routes>
       </Router>
     </>
