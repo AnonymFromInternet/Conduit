@@ -18,7 +18,7 @@ getCurrentUserListener.startListening({
       listenerApi.dispatch(getCurrentUserFailureAction());
       return;
     }
-    AuthService.getCurrentUser(token)
+    AuthService.getCurrentUser()
       .then((response) => {
         listenerApi.dispatch(getCurrentUserSuccessAction(response.data.user));
       })

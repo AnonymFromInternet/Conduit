@@ -6,3 +6,5 @@ const customAxios = axios.create({
   baseURL: apiUrl,
   headers: { authorization: `Token ${TokenService.getToken("accessToken")}` },
 });
+
+export default customAxios;
