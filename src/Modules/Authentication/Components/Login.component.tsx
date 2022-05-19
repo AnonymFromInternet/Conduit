@@ -1,22 +1,22 @@
 import { Link, Navigate } from "react-router-dom";
 
-import BackendErrorMessagesComponent from "../../../Shared/Components/BackendErrorMessages.component";
+import BackendErrorMessagesComponent from "../../../Shared/Components/BackendErrorMessages/BackendErrorMessages.component";
 import {
   useAppDispatch,
   useAppSelector,
 } from "../../../Shared/GlobalStore/Hooks";
 import { useState } from "react";
 
-import { loginAction, registerAction } from "../Store/Slices/Register.slice";
+import { loginAction } from "../Store/Slices/Register.slice";
 import { LoginRequestInterface } from "../Types/LoginRequest.interface";
 
 const LoginComponent = () => {
-  // State
+  // Store
   const currentUser$ = useAppSelector((state) => state.auth.currentUser);
   const backendErrors$ = useAppSelector((state) => state.auth.error);
   const isSubmitting$ = useAppSelector((state) => state.auth.isSubmitting);
   const dispatch = useAppDispatch();
-  // State
+  // Store
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,7 +35,7 @@ const LoginComponent = () => {
           <div className="col-md-6 offset-md-3">
             <h1 className="text-xs-center">Sign In</h1>
             <p className="text-xs-center">
-              <Link style={{ textDecoration: "none" }} to={`/login`}>
+              <Link style={{ textDecoration: "none" }} to={`/register`}>
                 Need an Account?
               </Link>
             </p>
@@ -67,7 +67,7 @@ const LoginComponent = () => {
                   type={"submit"}
                   className="btn btn-lg btn-success pull-xs-right"
                 >
-                  Sign Up
+                  Sign In
                 </button>
               </fieldset>
             </form>

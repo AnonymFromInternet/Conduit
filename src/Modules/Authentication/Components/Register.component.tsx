@@ -7,15 +7,15 @@ import {
 } from "../../../Shared/GlobalStore/Hooks";
 import { registerAction } from "../Store/Slices/Register.slice";
 import { RegisterRequestInterface } from "../Types/RegisterRequest.interface";
-import BackendErrorMessagesComponent from "../../../Shared/Components/BackendErrorMessages.component";
+import BackendErrorMessagesComponent from "../../../Shared/Components/BackendErrorMessages/BackendErrorMessages.component";
 
 const RegisterComponent = () => {
-  // State
+  // Store
   const isSubmitting$ = useAppSelector((state) => state.auth.isSubmitting);
   const backendErrors$ = useAppSelector((state) => state.auth.error);
   const currentUser$ = useAppSelector((state) => state.auth.currentUser);
   const dispatch = useAppDispatch();
-  // State
+  // Store
 
   // Data from inputs
   const [username, setUsername] = useState("");

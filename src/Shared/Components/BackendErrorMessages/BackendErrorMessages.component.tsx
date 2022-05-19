@@ -1,4 +1,4 @@
-import { BackendErrorsType } from "../Types/BackendErrors.type";
+import { BackendErrorsType } from "../../Types/BackendErrors.type";
 import React from "react";
 
 interface BackendErrorsProps {
