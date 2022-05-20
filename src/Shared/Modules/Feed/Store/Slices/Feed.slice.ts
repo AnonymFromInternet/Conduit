@@ -35,5 +35,7 @@ export const { getFeedAction, getFeedSuccessAction, getFeedFailureAction } =
 
 // Exporting selectors
 export const isLoadingSelect = (state: RootState) => state.feed.isLoading;
+export const dataSelect = (state: RootState) => state.feed.data;
+export const errorSelect = (state: RootState) => state.feed.error;
 
 export default feedSlice.reducer;
