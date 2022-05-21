@@ -44,8 +44,8 @@ const FeedComponent: React.FC<FeedComponentPropsInterface> = ({ apiUrl }) => {
               <Link className="preview-link" to={`/articles/${article.slug}`}>
                 <h1>{article.title}</h1>
                 <p>{article.description}</p>
-                LIST OF TAGS
               </Link>
+              LIST OF TAGS
             </div>
           );
         })}
