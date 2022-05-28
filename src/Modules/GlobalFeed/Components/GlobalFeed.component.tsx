@@ -1,11 +1,11 @@
 import FeedComponent from "../../../Shared/Modules/Feed/Components/Feed/Feed.component";
+import BannerComponent from "../../../Shared/Modules/Banner/Components/Banner.component";
 
 const GlobalFeedComponent = () => {
-  // Создать рендерящую функцию, которая возвращает разметку, а не указывать просто в JSX
   return (
     <>
       <div className="home-page"></div>
-      BANNER
+      <BannerComponent />
       <div className="container page">
         <div className="row">
           <div className="col-md-9">

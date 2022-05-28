@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
-import { getFeedAction } from "../../Store/Slices/Feed.slice";
+import { Link, useLocation } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../GlobalStore/Hooks";
+
+import { getFeedAction } from "../../Store/Slices/Feed.slice";
 import LoadingComponent from "../../../../Components/Loading/Loading.component";
-import { Link } from "react-router-dom";
+import ErrorMessageComponent from "../../../../Components/ErrorMessage/ErrorMessage.component";
+import PaginationComponent from "../../../Pagination/Components/Pagination.component";
 
 interface FeedComponentPropsInterface {
   apiUrl: string;
@@ -15,6 +18,14 @@ const FeedComponent: React.FC<FeedComponentPropsInterface> = ({ apiUrl }) => {
   const errorSelector$ = useAppSelector((state) => state.feed.error);
   const dispatch = useAppDispatch();
   // Store
+
+  // Pagination
+  // limit
+  // get actual page url
+  const actualUrl = useLocation();
+  const baseUrl = actualUrl.pathname.split("?")[0];
+  console.log("base url is: ", baseUrl);
+  // Pagination
 
   useEffect(() => {
     dispatch(getFeedAction(apiUrl));
@@ -56,7 +67,7 @@ const FeedComponent: React.FC<FeedComponentPropsInterface> = ({ apiUrl }) => {
             </div>
           );
         })}
-        PAGINATION
+        <PaginationComponent total={3} limit={1} currentPage={3} baseUrl={""} />
       </div>
     );
   };
@@ -64,7 +75,7 @@ const FeedComponent: React.FC<FeedComponentPropsInterface> = ({ apiUrl }) => {
   return (
     <>
       {isLoadingSelector$ && <LoadingComponent />}
-      {errorSelector$ && <p>Error...</p>}
+      {errorSelector$ && <ErrorMessageComponent error={errorSelector$} />}
       {content}
     </>
   );
