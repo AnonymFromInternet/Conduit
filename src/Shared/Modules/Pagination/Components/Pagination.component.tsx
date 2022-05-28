@@ -1,18 +1,20 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { NavLink } from "react-router-dom";
+
+import { limit } from "../../../Types/Constants";
 
 interface PaginationComponentProps {
   total: number;
-  limit: number;
-  currentPage: number;
   baseUrl: string;
+  getPage: (page: number) => void;
+  currentPage: number;
 }
 
 const PaginationComponent: FC<PaginationComponentProps> = ({
-  total,
-  limit,
-  baseUrl,
   currentPage,
+  total,
+  baseUrl,
+  getPage,
 }) => {
   const pagesCount = Math.ceil(total / limit);
 
@@ -21,28 +23,16 @@ const PaginationComponent: FC<PaginationComponentProps> = ({
     for (let i = 0; i < pagesCount; i++) {
       array.push(i + 1);
     }
-
     return (
       <>
         {array.map((element) => {
-          // should return NavLink
           return (
             <li
-              style={{
-                border: "1px solid black",
-                margin: "6px",
-                width: "33px",
-                height: "33px",
-                textAlign: "center",
-                alignItems: "center",
-              }}
-              className="page-item"
+              className={`page-item ${currentPage === element ? "active" : ""}`}
               key={element}
+              onClick={() => getPage(element)}
             >
-              <NavLink
-                style={{ color: "black", textDecoration: "none" }}
-                to={baseUrl}
-              >
+              <NavLink className="page-link" to={baseUrl + `/page=${element}`}>
                 {element}
               </NavLink>
             </li>
@@ -52,8 +42,9 @@ const PaginationComponent: FC<PaginationComponentProps> = ({
     );
   };
 
-  //useEffect(() => {}, []);
-
   return <ul className="pagination">{content()}</ul>;
 };
 export default PaginationComponent;
+
+// Добавлять данные в запрос на бэкенд в диспатч при переключении страницы для того, чтобы на бэкенд отправлялся
+// правильный оффсет

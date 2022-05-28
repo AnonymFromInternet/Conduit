@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../GlobalStore/Hooks";
 
 import { getFeedAction } from "../../Store/Slices/Feed.slice";
@@ -19,17 +19,16 @@ const FeedComponent: React.FC<FeedComponentPropsInterface> = ({ apiUrl }) => {
   const dispatch = useAppDispatch();
   // Store
 
-  // Pagination
-  // limit
-  // get actual page url
-  const actualUrl = useLocation();
-  const baseUrl = actualUrl.pathname.split("?")[0];
-  console.log("base url is: ", baseUrl);
-  // Pagination
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     dispatch(getFeedAction(apiUrl));
-  }, []);
+  }, [page]);
+
+  const changePage = (page: number) => {
+    console.log("change page");
+    setPage(page);
+  };
 
   const renderContent = () => {
     if (!dataSelector$) {
@@ -67,7 +66,12 @@ const FeedComponent: React.FC<FeedComponentPropsInterface> = ({ apiUrl }) => {
             </div>
           );
         })}
-        <PaginationComponent total={3} limit={1} currentPage={3} baseUrl={""} />
+        <PaginationComponent
+          currentPage={page}
+          total={dataSelector$.articlesCount}
+          baseUrl={apiUrl}
+          getPage={changePage}
+        />
       </div>
     );
   };

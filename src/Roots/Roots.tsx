@@ -10,6 +10,7 @@ const Roots = () => {
       <Route path={"/"} element={<GlobalFeedComponent />} />
       <Route path="/register" element={<RegisterComponent />} />
       <Route path="/login" element={<LoginComponent />} />
+      <Route path={"/articles/:page"} element={<GlobalFeedComponent />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
