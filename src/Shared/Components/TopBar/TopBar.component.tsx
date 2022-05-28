@@ -11,7 +11,7 @@ const TopBarComponent = () => {
   return (
     <nav className="navbar navbar-dark">
       <div className="container">
-        <Link to={"/"} className="navbar-brand">
+        <Link to={"/"} className="navbar-brand text-primary">
           Logo
         </Link>
         <form className="form form-inline">

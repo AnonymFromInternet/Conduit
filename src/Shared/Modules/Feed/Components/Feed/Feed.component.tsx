@@ -28,20 +28,27 @@ const FeedComponent: React.FC<FeedComponentPropsInterface> = ({ apiUrl }) => {
       <div className="article-preview">
         {dataSelector$.articles.map((article) => {
           return (
-            <div key={article.slug}>
+            <div key={article.slug} style={{ marginBottom: "33px" }}>
               <div className="article-meta">
                 <Link to={`/profiles/${article.author.username}`}>
                   <img src={article.author.image} alt="userImage" />
                 </Link>
                 <div className="info">
-                  <Link to={`/profiles/${article.author.username}`}>
+                  <Link
+                    to={`/profiles/${article.author.username}`}
+                    style={{ textDecoration: "none" }}
+                  >
                     {article.author.username}
                   </Link>
                   <span className="date">{article.createdAt}</span>
                 </div>
                 <div className="pull-xs-right">ADD TO FAVORITES</div>
               </div>
-              <Link className="preview-link" to={`/articles/${article.slug}`}>
+              <Link
+                className="preview-link"
+                to={`/articles/${article.slug}`}
+                style={{ textDecoration: "none" }}
+              >
                 <h1>{article.title}</h1>
                 <p>{article.description}</p>
               </Link>

@@ -65,7 +65,7 @@ const LoginComponent = () => {
                   disabled={isSubmitting$}
                   onClick={(e) => login(e)}
                   type={"submit"}
-                  className="btn btn-lg btn-success pull-xs-right"
+                  className="btn btn-lg btn-primary pull-xs-right"
                 >
                   Sign In
                 </button>
