@@ -8,18 +8,18 @@ import {
 import { useState } from "react";
 
 import {
-  errorSelect,
-  isSubmittingSelect,
+  errorSelector,
+  isSubmittingSelector,
   loginAction,
-  userSelect,
+  userSelector,
 } from "../Store/Slices/Register.slice";
 import { LoginRequestInterface } from "../Types/LoginRequest.interface";
 
 const LoginComponent = () => {
   // Store
-  const currentUser$ = useAppSelector(userSelect);
-  const backendErrors$ = useAppSelector(errorSelect);
-  const isSubmitting$ = useAppSelector(isSubmittingSelect);
+  const currentUser$ = useAppSelector(userSelector);
+  const backendErrors$ = useAppSelector(errorSelector);
+  const isSubmitting$ = useAppSelector(isSubmittingSelector);
   const dispatch = useAppDispatch();
   // Store
 

@@ -94,10 +94,11 @@ export const {
 } = authSlice.actions;
 
 // Exporting Selectors:
-export const isSubmittingSelect = (state: RootState) => state.auth.isSubmitting;
-export const userSelect = (state: RootState) => state.auth.currentUser;
-export const errorSelect = (state: RootState) => state.auth.error;
-export const isLoggedInSelect = (state: RootState) => state.auth.isLoggedIn;
+export const isSubmittingSelector = (state: RootState) =>
+  state.auth.isSubmitting;
+export const userSelector = (state: RootState) => state.auth.currentUser;
+export const errorSelector = (state: RootState) => state.auth.error;
+export const isLoggedInSelector = (state: RootState) => state.auth.isLoggedIn;
 
 // Exporting Reducer
 export default authSlice.reducer;

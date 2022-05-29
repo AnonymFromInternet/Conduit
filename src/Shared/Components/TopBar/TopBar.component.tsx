@@ -4,14 +4,14 @@ import { useAppSelector } from "../../GlobalStore/Hooks";
 
 import "./TopBar.component.css";
 import {
-  isLoggedInSelect,
-  userSelect,
+  isLoggedInSelector,
+  userSelector,
 } from "../../../Modules/Authentication/Store/Slices/Register.slice";
 
 const TopBarComponent = () => {
   // Store
-  const currentUser$ = useAppSelector(userSelect);
-  const isLoggedIn$ = useAppSelector(isLoggedInSelect);
+  const currentUser$ = useAppSelector(userSelector);
+  const isLoggedIn$ = useAppSelector(isLoggedInSelector);
   // Store
   return (
     <nav className="navbar navbar-dark">
