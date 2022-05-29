@@ -18,7 +18,7 @@ const PaginationComponent: FC<PaginationComponentProps> = ({
   baseUrl,
   getPage,
 }) => {
-  const pagesCount = Math.ceil(500 / limit);
+  const pagesCount = Math.ceil(total / limit);
 
   const content = () => {
     const array: number[] = [];
@@ -47,6 +47,3 @@ const PaginationComponent: FC<PaginationComponentProps> = ({
   return <ul className="pagination-container">{content()}</ul>;
 };
 export default PaginationComponent;
-
-// Добавлять данные в запрос на бэкенд в диспатч при переключении страницы для того, чтобы на бэкенд отправлялся
-// правильный оффсет

@@ -3,11 +3,15 @@ import { Link, NavLink } from "react-router-dom";
 import { useAppSelector } from "../../GlobalStore/Hooks";
 
 import "./TopBar.component.css";
+import {
+  isLoggedInSelect,
+  userSelect,
+} from "../../../Modules/Authentication/Store/Slices/Register.slice";
 
 const TopBarComponent = () => {
   // Store
-  const currentUser$ = useAppSelector((state) => state.auth.currentUser);
-  const isLoggedIn$ = useAppSelector((state) => state.auth.isLoggedIn);
+  const currentUser$ = useAppSelector(userSelect);
+  const isLoggedIn$ = useAppSelector(isLoggedInSelect);
   // Store
   return (
     <nav className="navbar navbar-dark">

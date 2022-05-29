@@ -8,9 +8,9 @@ import {
 import { AuthService } from "../Services/Auth.service";
 import { TokenService } from "../../../Shared/Services/Token.service";
 
-export const registerListenerMiddleware = createListenerMiddleware();
+export const registerListener = createListenerMiddleware();
 
-registerListenerMiddleware.startListening({
+registerListener.startListening({
   actionCreator: registerAction,
   effect: async (action, listenerApi) => {
     // It gives to disable other listeners with this type:

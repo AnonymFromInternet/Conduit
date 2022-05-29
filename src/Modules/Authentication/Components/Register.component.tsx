@@ -5,15 +5,20 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "../../../Shared/GlobalStore/Hooks";
-import { registerAction } from "../Store/Slices/Register.slice";
+import {
+  errorSelect,
+  isSubmittingSelect,
+  registerAction,
+  userSelect,
+} from "../Store/Slices/Register.slice";
 import { RegisterRequestInterface } from "../Types/RegisterRequest.interface";
 import BackendErrorMessagesComponent from "../../../Shared/Components/BackendErrorMessages/BackendErrorMessages.component";
 
 const RegisterComponent = () => {
   // Store
-  const isSubmitting$ = useAppSelector((state) => state.auth.isSubmitting);
-  const backendErrors$ = useAppSelector((state) => state.auth.error);
-  const currentUser$ = useAppSelector((state) => state.auth.currentUser);
+  const isSubmitting$ = useAppSelector(isSubmittingSelect);
+  const backendErrors$ = useAppSelector(errorSelect);
+  const currentUser$ = useAppSelector(userSelect);
   const dispatch = useAppDispatch();
   // Store
 

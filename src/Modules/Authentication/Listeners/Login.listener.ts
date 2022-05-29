@@ -7,9 +7,9 @@ import {
 import { AuthService } from "../Services/Auth.service";
 import { TokenService } from "../../../Shared/Services/Token.service";
 
-export const loginListenerMiddleware = createListenerMiddleware();
+export const loginListener = createListenerMiddleware();
 
-loginListenerMiddleware.startListening({
+loginListener.startListening({
   actionCreator: loginAction,
   effect: async (action, listenerApi) => {
     AuthService.login(action.payload)

@@ -3,3 +3,4 @@
 - [Bootstrap](https://react-bootstrap.github.io/)
 - [Axios](https://github.com/axios/axios)
 - [Query-String](https://www.npmjs.com/package/query-string)
+- [Uuid](https://www.npmjs.com/package/uuid)

@@ -3,11 +3,17 @@ import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../GlobalStore/Hooks";
 import { parseUrl, stringify } from "query-string";
 
-import { getFeedAction } from "../../Store/Slices/Feed.slice";
+import {
+  dataSelect,
+  errorSelect,
+  getFeedAction,
+  isLoadingSelect,
+} from "../../Store/Slices/Feed.slice";
 import LoadingComponent from "../../../../Components/Loading/Loading.component";
 import ErrorMessageComponent from "../../../../Components/ErrorMessage/ErrorMessage.component";
 import PaginationComponent from "../../../Pagination/Components/Pagination.component";
 import { limit } from "../../../../Types/Constants";
+import TagListComponent from "../../../TagList/Component/TagList.component";
 
 interface FeedComponentPropsInterface {
   apiUrl: string;
@@ -15,16 +21,15 @@ interface FeedComponentPropsInterface {
 
 const FeedComponent: FC<FeedComponentPropsInterface> = ({ apiUrl }) => {
   // Store
-  const isLoadingSelector$ = useAppSelector((state) => state.feed.isLoading);
-  const dataSelector$ = useAppSelector((state) => state.feed.data);
-  const errorSelector$ = useAppSelector((state) => state.feed.error);
+  const isLoadingSelector$ = useAppSelector(isLoadingSelect);
+  const dataSelector$ = useAppSelector(dataSelect);
+  const errorSelector$ = useAppSelector(errorSelect);
   const dispatch = useAppDispatch();
   // Store
 
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    // В этом адресе требуется поменять адрес с доп данными для оффсета
     const offset = page * limit - limit;
     const parsedUrl = parseUrl(apiUrl);
     const stringifiedParams = stringify({ limit, offset, ...parsedUrl.query });
@@ -69,7 +74,7 @@ const FeedComponent: FC<FeedComponentPropsInterface> = ({ apiUrl }) => {
                 <h1>{article.title}</h1>
                 <p>{article.description}</p>
               </Link>
-              LIST OF TAGS
+              <TagListComponent tags={article.tagList} />
             </div>
           );
         })}
@@ -93,5 +98,3 @@ const FeedComponent: FC<FeedComponentPropsInterface> = ({ apiUrl }) => {
 };
 
 export default FeedComponent;
-
-// При помощи библиотеки query-string требуется получать базовый адрес

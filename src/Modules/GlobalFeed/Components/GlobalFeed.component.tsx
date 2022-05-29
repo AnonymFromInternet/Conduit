@@ -1,5 +1,6 @@
 import FeedComponent from "../../../Shared/Modules/Feed/Components/Feed/Feed.component";
 import BannerComponent from "../../../Shared/Modules/Banner/Components/Banner.component";
+import PopularTagsComponent from "../../../Shared/Modules/PopularTags/Component/PopularTags.component";
 
 const GlobalFeedComponent = () => {
   return (
@@ -12,7 +13,9 @@ const GlobalFeedComponent = () => {
             FEED TOGGLER
             <FeedComponent apiUrl={"/articles"} />
           </div>
-          <div className="col-md-3">POPULAR TAGS</div>
+          <div className="col-md-3">
+            <PopularTagsComponent />
+          </div>
         </div>
       </div>
     </>

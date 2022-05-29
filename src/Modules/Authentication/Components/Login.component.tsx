@@ -7,14 +7,19 @@ import {
 } from "../../../Shared/GlobalStore/Hooks";
 import { useState } from "react";
 
-import { loginAction } from "../Store/Slices/Register.slice";
+import {
+  errorSelect,
+  isSubmittingSelect,
+  loginAction,
+  userSelect,
+} from "../Store/Slices/Register.slice";
 import { LoginRequestInterface } from "../Types/LoginRequest.interface";
 
 const LoginComponent = () => {
   // Store
-  const currentUser$ = useAppSelector((state) => state.auth.currentUser);
-  const backendErrors$ = useAppSelector((state) => state.auth.error);
-  const isSubmitting$ = useAppSelector((state) => state.auth.isSubmitting);
+  const currentUser$ = useAppSelector(userSelect);
+  const backendErrors$ = useAppSelector(errorSelect);
+  const isSubmitting$ = useAppSelector(isSubmittingSelect);
   const dispatch = useAppDispatch();
   // Store
 
