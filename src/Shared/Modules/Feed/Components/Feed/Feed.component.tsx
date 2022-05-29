@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../GlobalStore/Hooks";
+import { parseUrl, stringify } from "query-string";
 
 import { getFeedAction } from "../../Store/Slices/Feed.slice";
 import LoadingComponent from "../../../../Components/Loading/Loading.component";
 import ErrorMessageComponent from "../../../../Components/ErrorMessage/ErrorMessage.component";
 import PaginationComponent from "../../../Pagination/Components/Pagination.component";
+import { limit } from "../../../../Types/Constants";
 
 interface FeedComponentPropsInterface {
   apiUrl: string;
 }
 
-const FeedComponent: React.FC<FeedComponentPropsInterface> = ({ apiUrl }) => {
+const FeedComponent: FC<FeedComponentPropsInterface> = ({ apiUrl }) => {
   // Store
   const isLoadingSelector$ = useAppSelector((state) => state.feed.isLoading);
   const dataSelector$ = useAppSelector((state) => state.feed.data);
@@ -22,11 +24,16 @@ const FeedComponent: React.FC<FeedComponentPropsInterface> = ({ apiUrl }) => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    dispatch(getFeedAction(apiUrl));
+    // В этом адресе требуется поменять адрес с доп данными для оффсета
+    const offset = page * limit - limit;
+    const parsedUrl = parseUrl(apiUrl);
+    const stringifiedParams = stringify({ limit, offset, ...parsedUrl.query });
+    const apiUrlWithParams = `${parsedUrl.url}?${stringifiedParams}`;
+
+    dispatch(getFeedAction(apiUrlWithParams));
   }, [page]);
 
   const changePage = (page: number) => {
-    console.log("change page");
     setPage(page);
   };
 
@@ -86,3 +93,5 @@ const FeedComponent: React.FC<FeedComponentPropsInterface> = ({ apiUrl }) => {
 };
 
 export default FeedComponent;
+
+// При помощи библиотеки query-string требуется получать базовый адрес

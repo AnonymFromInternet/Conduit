@@ -15,6 +15,7 @@ const feedSlice = createSlice({
   reducers: {
     getFeedAction: (state, action: PayloadAction<string>) => {
       state.isLoading = true;
+      state.data = null;
     },
     getFeedSuccessAction: (
       state,

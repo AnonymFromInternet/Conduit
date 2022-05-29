@@ -45,7 +45,7 @@ const TopBarComponent = () => {
                   to={"/settings"}
                 >
                   <i className="ion-gear-a"></i>
-                  Settings
+                  &nbsp; Settings
                 </NavLink>
               </div>
 
@@ -56,16 +56,7 @@ const TopBarComponent = () => {
                   to={"/settings"}
                 >
                   <i className="ion-gear-a"></i>
-                  <img
-                    style={{
-                      width: "61px",
-                      height: "16px",
-                      borderRadius: "50%",
-                    }}
-                    className="user-picture m-1"
-                    src={currentUser$?.image}
-                    alt="userImage"
-                  />
+                  &nbsp;
                   {currentUser$?.username}
                 </NavLink>
               </div>

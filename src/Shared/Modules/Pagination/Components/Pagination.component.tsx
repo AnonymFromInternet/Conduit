@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 
 import { limit } from "../../../Types/Constants";
 
+import "./Pagination.component.css";
+
 interface PaginationComponentProps {
   total: number;
   baseUrl: string;
@@ -16,7 +18,7 @@ const PaginationComponent: FC<PaginationComponentProps> = ({
   baseUrl,
   getPage,
 }) => {
-  const pagesCount = Math.ceil(total / limit);
+  const pagesCount = Math.ceil(500 / limit);
 
   const content = () => {
     const array: number[] = [];
@@ -42,7 +44,7 @@ const PaginationComponent: FC<PaginationComponentProps> = ({
     );
   };
 
-  return <ul className="pagination">{content()}</ul>;
+  return <ul className="pagination-container">{content()}</ul>;
 };
 export default PaginationComponent;
 
