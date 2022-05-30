@@ -4,6 +4,7 @@ import RegisterComponent from "../Modules/Authentication/Components/Register.com
 import LoginComponent from "../Modules/Authentication/Components/Login.component";
 import GlobalFeedComponent from "../Modules/GlobalFeed/Components/GlobalFeed.component";
 import YourFeedComponent from "../Modules/YourFeed/Components/YourFeed.component";
+import TagFeedComponent from "../Shared/Modules/TagFeed/Components/TagFeed.component";
 
 const Roots = () => {
   return (
@@ -12,6 +13,7 @@ const Roots = () => {
       <Route path="/register" element={<RegisterComponent />} />
       <Route path="/login" element={<LoginComponent />} />
       <Route path={"/articles/:page"} element={<GlobalFeedComponent />} />
+      <Route path={"/tags/:slug"} element={<TagFeedComponent />} />
       <Route path={"/feed"} element={<YourFeedComponent />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>

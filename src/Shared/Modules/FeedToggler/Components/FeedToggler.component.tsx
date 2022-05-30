@@ -12,7 +12,7 @@ const FeedTogglerComponent: FC<FeedTogglerComponentProps> = ({ tagName }) => {
   // Store
   const isLoggedIn$ = useAppSelector(isLoggedInSelector);
   // Store
-  useEffect(() => {}, []);
+
   return (
     <div className="feed-toggle">
       <ul className="nav nav-pills outline-active">
@@ -27,10 +27,11 @@ const FeedTogglerComponent: FC<FeedTogglerComponentProps> = ({ tagName }) => {
             Global Feed
           </NavLink>
         </li>
+
         {tagName && (
           <li className="nav-item">
             <NavLink className="nav-link" to={`/tags/${tagName}`}>
-              {tagName}
+              #&nbsp;{tagName}
             </NavLink>
           </li>
         )}
