@@ -1,10 +1,10 @@
-import FeedComponent from "../../../Shared/Modules/Feed/Components/Feed/Feed.component";
 import BannerComponent from "../../../Shared/Modules/Banner/Components/Banner.component";
-import PopularTagsComponent from "../../../Shared/Modules/PopularTags/Component/PopularTags.component";
 import FeedTogglerComponent from "../../../Shared/Modules/FeedToggler/Components/FeedToggler.component";
+import FeedComponent from "../../../Shared/Modules/Feed/Components/Feed/Feed.component";
+import PopularTagsComponent from "../../../Shared/Modules/PopularTags/Component/PopularTags.component";
 
-const GlobalFeedComponent = () => {
-  const apiUrl = "/articles";
+const YourFeedComponent = () => {
+  const apiUrl = "/articles/feed";
   return (
     <>
       <div className="home-page"></div>
@@ -23,4 +23,5 @@ const GlobalFeedComponent = () => {
     </>
   );
 };
-export default GlobalFeedComponent;
+
+export default YourFeedComponent;

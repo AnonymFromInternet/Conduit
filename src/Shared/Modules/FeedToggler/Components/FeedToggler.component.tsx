@@ -16,13 +16,11 @@ const FeedTogglerComponent: FC<FeedTogglerComponentProps> = ({ tagName }) => {
   return (
     <div className="feed-toggle">
       <ul className="nav nav-pills outline-active">
-        {isLoggedIn$ && (
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/feed">
-              Your Feed
-            </NavLink>
-          </li>
-        )}
+        <li className="nav-item">
+          <NavLink className="nav-link" to={isLoggedIn$ ? "/feed" : "/login"}>
+            Your Feed
+          </NavLink>
+        </li>
 
         <li className="nav-item">
           <NavLink className="nav-link" to="/">
